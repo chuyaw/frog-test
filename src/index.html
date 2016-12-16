@@ -33,6 +33,7 @@
         margin: 0 auto -60px;
         /* Pad bottom by footer height */
         padding: 0 0 60px;
+        background-color: darkseagreen;
         }
 
         /* Set the fixed height of the footer here */
@@ -60,6 +61,14 @@
         code {
         font-size: 80%;
         }
+/*
+        #pageContent {
+        background-color: pink;
+        }
+
+        #populationHeader {
+        background-color: #f5f5f5;
+        }*/
     </style>
 
     <body>
@@ -116,9 +125,9 @@
             <!--/Fixed navbar -->
 
             <!-- Begin page content -->
-            <div class="container">
+            <div id='pageContent' class="container">
 
-                <div class="row"> <!-- Population Header -->
+                <div id='populationHeader' class="row"> <!-- Population Header -->
                     <div class="col-md-12">
                         <h1 class="text-center">
                             POPULATION OVERVIEW
@@ -126,51 +135,51 @@
                     </div>
                 </div> <!--/Population Header -->
 
-                <div class="row"> <!-- Population Stats Row -->
+                <div id='totalStats' class="row"> <!-- Total Population Row -->
+                    <div class="col-md-12">
+                        <h2 class="text-center">
+                            Total Population
+                        </h2>
+                        <h2 class="text-center" id='total'></h2>
+                    </div>
+                </div> <!--/Total Population Row -->
+
+                <div id='populationStats' class="row"> <!-- Population Stats Row -->
                     <div class="col-md-4">
-                      	<h2 class="">
+                      	<h2 class="text-center">
                             Male
                         </h2>
 
-                        <p class="">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-                            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                            sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
-                            odio dui.</p>
-                        <p class="">	<a class="btn" href="#">View details »</a>
+                        <p class=""> 	<h2 class="text-center" id="male"></h2></p>
+                        <p class="">	<!--<a class="btn" href="#">View details »</a>-->
 
                         </p>
                     </div>
 
                     <div class="col-md-4">
-                        <h2 class="">
+                        <h2 class="text-center">
                             Female
                         </h2>
 
-                        <p class="">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-                            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                            sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
-                            odio dui.</p>
-                        <p class="">	<a class="btn" href="#">View details »</a>
+                        <p class=""> 	<h2 class="text-center", id="female"></h2></p>
+                        <p class="">	<!--<a class="btn" href="#">View details »</a>-->
 
                         </p>
                     </div>
 
                     <div class="col-md-4">
-                        <h2 class="">
+                        <h2 class="text-center">
                             Healthy
                         </h2>
 
-                        <p class="">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-                            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                            sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
-                            odio dui.</p>
-                        <p class="">	<a class="btn" href="#">View details »</a>
+                        <p class=""> 	<h2 class="text-center", id="healthy"></h2></p>
+                        <p class="">	<!--<a class="btn" href="#" >View details »</a>-->
 
                         </p>
                     </div>
                 </div> <!--/Population Stats Row -->
 
-                <div class="row"> <!-- Pond Header -->
+                <div id='pondHeader' class="row"> <!-- Pond Header -->
                     <div class="col-md-12">
                       	<h1 class="text-center">
                             POND OVERVIEW
@@ -178,59 +187,47 @@
                     </div>
                 </div> <!--/Pond Header -->
 
-                <div class="row"> <!-- Pond Stats Row -->
+                <div id='pondStats' class="row"> <!-- Pond Stats Row -->
                     <div class="col-md-3">
-                        <h2 class="">
+                        <h2 class="text-center">
                             Mating Pods
                         </h2>
 
-                        <p class="">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-                            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                            sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
-                            odio dui.</p>
-                        <p class="">	<a class="btn" href="#">View details »</a>
+                        <p class=""> 	<h2 class="text-center", id="pods"></h2></p>
+                        <p class="">	<!--<a class="btn" href="#">View details »</a>-->
 
                         </p>
                     </div>
 
                     <div class="col-md-3">
-                        <h2 class="">
+                        <h2 class="text-center">
                             Pollution Level
                         </h2>
 
-                        <p class="">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-                            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                            sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
-                            odio dui.</p>
-                        <p class="">	<a class="btn" href="#">View details »</a>
+                        <p class=""> 	<h2 class="text-center", id="pollution"></h2></p>
+                        <p class="">	<!--<a class="btn" href="#">View details »</a>-->
 
                         </p>
                     </div>
 
                     <div class="col-md-3">
-                      	<h2 class="">
+                      	<h2 class="text-center">
                             pH Level
                         </h2>
 
-                        <p class="">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-                            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                            sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
-                            odio dui.</p>
-                        <p class="">	<a class="btn" href="#">View details »</a>
+                        <p class=""> 	<h2 class="text-center", id="phLevel"></h2></p>
+                        <p class="">	<!--<a class="btn" href="#">View details »</a>-->
 
                         </p>
                     </div>
 
                     <div class="col-md-3">
-                      	<h2 class="">
+                      	<h2 class="text-center">
                             Fish Population
                         </h2>
 
-                        <p class="">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-                            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                            sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
-                            odio dui.</p>
-                        <p class="">	<a class="btn" href="#">View details »</a>
+                        <p class=""> 	<h2 class="text-center", id="fish"></h2></p>
+                        <p class="">	<!--<a class="btn" href="#">View details »</a>-->
 
                         </p>
                     </div>
@@ -252,7 +249,7 @@
 
         <div id="footer" class="">
             <div class="container">
-                <p class="text-muted credit">Developed By CY Lim</p>
+                <p class="text-muted credit" id="myFoot">Developed By CY Lim</p>
             </div>
         </div>
 
