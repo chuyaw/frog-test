@@ -1,33 +1,32 @@
 // Empty JS for your own code to be here
 
-    document.getElementById('total').innerHTML = "24,000";
-showTotalPopulation();
+showTotalPopulation();/*
 showMalePopulation();
 showFemalePopulation();
 showHealthyPopulation();
 showPodCount();
 showPolutionLevel();
 showPHLevel();
-showFishPopulation();
+showFishPopulation();*/
 
 // DB queries
 function showTotalPopulation() {
-    document.getElementById('total').innerHTML = "23,000";
+    document.getElementById('total').innerHTML = "23,000";/*
     var xhttp = new XMLHTTPRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function() {/*
         if (this.readyState == 4 && this.status = 200) {
             document.getElementById('total').innerHTML = this.responseText;
         }
-    };
+    };/*
     try {
         xhttp.open("GET", "gethomestats.php?q=frog_count", true)
         xhttp.send();
     } catch(err) {
         document.getElementById('total').innerHTML = "21,000";
     }
-        document.getElementById('total').innerHTML = "22,000";
+        document.getElementById('total').innerHTML = "22,000";*/
 }
-
+/*
 function showMalePopulation() {
     var xhttp = new XMLHTTPRequest();
     xhttp.onreadystatechange = function() {
@@ -80,3 +79,4 @@ function showFishPopulation() {
     var pc = 40000;
     document.getElementById('fish').innerHTML = pc;
 }
+*/
