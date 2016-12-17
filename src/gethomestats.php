@@ -75,84 +75,78 @@ th {text-align: left;}
 <body>
 
 <?php
-$q = intval($_GET['q']);
+$q = $_GET['q'];
 
-$con = mysqli_connect('localhost','root','root','frog_pond_db');
+//$con = mysqli_connect('localhost','root','root','frog_pond_db');
 if (!$con) {
     //die('Could not connect: ' . mysqli_error($con));
-}
-
+    
+    //this section is to simulate db connection
     switch ($q) {
         case 'frog_count':
-            //this segment is to simulate database result return===============
-            if (!$con) {
-                echo 20000;
-                break;
-            }
-            //=================================================================
-
-            $sql = "SELECT count(*) as frog_count FROM frog WHERE dod = null";
-            $result = mysqli_query($con, $sql);
-
-            while ($row = mysqli_fetch_array($result)) {
-                echo $row['frog_count'];
-            }
+            echo '20,000';
             break;
-
         case 'male_count':
-            //this segment is to simulate database result return===============
-            if (!$con) {
-                echo 12000;
-                break;
-            }
-            //=================================================================
-
-            $sql = "SELECT count(*) as male_count FROM frog WHERE gender = 'male' AND dod = null";
-            $result = mysqli_query($con, $sql);
-
-            while ($row = mysqli_fetch_array($result)) {
-                echo $row['male_count'];
-            }
+            echo '12,000';
             break;
-
         case 'female_count':
-            //this segment is to simulate database result return===============
-            if (!$con) {
-                echo 8000;
-                break;
-            }
-            //=================================================================
-
-            $sql = "SELECT count(*) as female_count FROM frog WHERE gender = 'female' AND dod = null";
-            $result = mysqli_query($con, $sql);
-
-            while ($row = mysqli_fetch_array($result)) {
-                echo $row['female_count'];
-            }
+            echo '8,000';
             break;
-
         case 'healthy_count':
-            //this segment is to simulate database result return===============
-            if (!$con) {
-                echo 18000;
-                break;
-            }
-            //=================================================================
-
-            $sql = "SELECT count(*) as healthy_count FROM frog WHERE health = 'healthy'";
-            $result = mysqli_query($con, $sql);
-
-            while ($row = mysqli_fetch_array($result)) {
-                echo $row['healthy_count'];
-            }
+            echo '18,000';
             break;
-
+        case 'pod_count':
+            echo '25';
+            break;
+        case 'pollution_level':
+            echo '2';
+            break;
+        case 'pH_level':
+            echo '6.6';
+            break;
+        case 'fish_population':
+            echo '500';
+            break;
         default:
             # code...
             break;
     }
-
-mysqli_close($con);
+} else { //this section is for an actual db connection
+    switch ($q) {
+        case 'frog_count':
+            $sql = "SELECT count(*) as res FROM frog WHERE dod = null";
+            break;
+        case 'male_count':
+            $sql = "SELECT count(*) as res FROM frog WHERE gender = 'male' AND dod = null";
+            break;
+        case 'female_count':
+            $sql = "SELECT count(*) as res FROM frog WHERE gender = 'female' AND dod = null";
+            break;
+        case 'healthy_count':
+            $sql = "SELECT count(*) as res FROM frog WHERE health = 'healthy'"; 
+            break;
+        case 'pod_count':
+            $sql = "SELECT pod_count as res FROM pond_health_check WHERE max(check_date)";
+            break;
+        case 'pollution_level':
+            $sql = "SELECT pollution_level as res FROM pond_health_check WHERE max(check_date)";
+            break;
+        case 'pH_level':
+            $sql = "SELECT pH_level as res FROM pond_health_check WHERE max(check_date)";
+            break;
+        case 'fish_population':
+            $sql = "SELECT fish_population as res FROM pond_health_check WHERE max(check_date)";
+            break;
+        default:
+            # code...
+            break;
+    }
+    $result = mysqli_query($con, $sql);
+    while ($row = mysqli_fetch_array($result)) {
+        echo $row['res'];
+    }
+    mysqli_close($con);
+}
 
 /*
 $con = mysqli_connect('localhost','peter','abc123','my_db');
