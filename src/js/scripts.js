@@ -58,7 +58,7 @@ function showPodCount() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         //if (this.readyState == 4 && this.status = 200) {
-            document.getElementById('pods').innerHTML = this.response;
+            document.getElementById('pods').innerHTML = this.responseText;
         //}
     };
     xhttp.open("GET", "gethomestats.php?q=pod_count", true)
@@ -69,7 +69,7 @@ function showPolutionLevel() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         //if (this.readyState == 4 && this.status = 200) {
-            document.getElementById('pollution').innerHTML = this.response;
+            document.getElementById('pollution').innerHTML = this.responseText;
         //}
     };
     xhttp.open("GET", "gethomestats.php?q=pollution_level", true)
@@ -80,7 +80,7 @@ function showPHLevel() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         //if (this.readyState == 4 && this.status = 200) {
-            document.getElementById('phLevel').innerHTML = this.response;
+            document.getElementById('phLevel').innerHTML = this.responseText;
         //}
     };
     xhttp.open("GET", "gethomestats.php?q=pH_level", true)
@@ -91,7 +91,7 @@ function showFishPopulation() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         //if (this.readyState == 4 && this.status = 200) {
-            document.getElementById('fish').innerHTML = this.response;
+            document.getElementById('fish').innerHTML = this.responseText;
         //}
     };
     xhttp.open("GET", "gethomestats.php?q=fish_population", true)
