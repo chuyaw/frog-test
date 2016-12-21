@@ -77,10 +77,10 @@ th {text-align: left;}
 <?php
 $q = $_GET['q'];
 
-//$con = mysqli_connect('localhost','root','root','frog_pond_db');
+$con = mysqli_connect('localhost','root','CoolCow009!@','frogpond');
 if (!$con) {
-    //die('Could not connect: ' . mysqli_error($con));
-    
+    die('Could not connect: ' . mysqli_error($con));
+
     //this section is to simulate db connection
     switch ($q) {
         case 'frog_count':
@@ -114,28 +114,28 @@ if (!$con) {
 } else { //this section is for an actual db connection
     switch ($q) {
         case 'frog_count':
-            $sql = "SELECT count(*) as res FROM frog WHERE dod = null";
+            $sql = "SELECT count(*) as res FROM frogs WHERE dateOfDeath IS NULL";
             break;
         case 'male_count':
-            $sql = "SELECT count(*) as res FROM frog WHERE gender = 'male' AND dod = null";
+            $sql = "SELECT count(*) as res FROM frogs WHERE gender = 'MALE' AND dateOfDeath IS NULL";
             break;
         case 'female_count':
-            $sql = "SELECT count(*) as res FROM frog WHERE gender = 'female' AND dod = null";
+            $sql = "SELECT count(*) as res FROM frogs WHERE gender = 'FEMALE' AND dateOfDeath IS NULL";
             break;
         case 'healthy_count':
-            $sql = "SELECT count(*) as res FROM frog WHERE health = 'healthy'"; 
+            $sql = "SELECT count(*) as res FROM frogs WHERE health = 'HEALTHY' AND dateOfDeath IS NULL";
             break;
         case 'pod_count':
-            $sql = "SELECT pod_count as res FROM pond_health_check WHERE max(check_date)";
+            $sql = "SELECT matingPods as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
             break;
         case 'pollution_level':
-            $sql = "SELECT pollution_level as res FROM pond_health_check WHERE max(check_date)";
+            $sql = "SELECT pollutionLevel as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
             break;
         case 'pH_level':
-            $sql = "SELECT pH_level as res FROM pond_health_check WHERE max(check_date)";
+            $sql = "SELECT pHLevel as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
             break;
         case 'fish_population':
-            $sql = "SELECT fish_population as res FROM pond_health_check WHERE max(check_date)";
+            $sql = "SELECT fishPopulation as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
             break;
         default:
             # code...
