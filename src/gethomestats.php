@@ -75,108 +75,52 @@ th {text-align: left;}
 <body>
 
 <?php
+$server = 'localhost';
+$user = 'root';
+$pwd= 'CoolCow009!@';
+$db = 'frogpond';
+
 $q = $_GET['q'];
 
-$con = mysqli_connect('localhost','root','CoolCow009!@','frogpond');
-if (!$con) {
-    die('Could not connect: ' . mysqli_error($con));
-
-    //this section is to simulate db connection
-    switch ($q) {
-        case 'frog_count':
-            echo '20,000';
-            break;
-        case 'male_count':
-            echo '12,000';
-            break;
-        case 'female_count':
-            echo '8,000';
-            break;
-        case 'healthy_count':
-            echo '18,000';
-            break;
-        case 'pod_count':
-            echo '25';
-            break;
-        case 'pollution_level':
-            echo '2';
-            break;
-        case 'pH_level':
-            echo '6.6';
-            break;
-        case 'fish_population':
-            echo '500';
-            break;
-        default:
-            # code...
-            break;
-    }
-} else { //this section is for an actual db connection
-    switch ($q) {
-        case 'frog_count':
-            $sql = "SELECT count(*) as res FROM frogs WHERE dateOfDeath IS NULL";
-            break;
-        case 'male_count':
-            $sql = "SELECT count(*) as res FROM frogs WHERE gender = 'MALE' AND dateOfDeath IS NULL";
-            break;
-        case 'female_count':
-            $sql = "SELECT count(*) as res FROM frogs WHERE gender = 'FEMALE' AND dateOfDeath IS NULL";
-            break;
-        case 'healthy_count':
-            $sql = "SELECT count(*) as res FROM frogs WHERE health = 'HEALTHY' AND dateOfDeath IS NULL";
-            break;
-        case 'pod_count':
-            $sql = "SELECT matingPods as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
-            break;
-        case 'pollution_level':
-            $sql = "SELECT pollutionLevel as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
-            break;
-        case 'pH_level':
-            $sql = "SELECT pHLevel as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
-            break;
-        case 'fish_population':
-            $sql = "SELECT fishPopulation as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
-            break;
-        default:
-            # code...
-            break;
-    }
-    $result = mysqli_query($con, $sql);
-    while ($row = mysqli_fetch_array($result)) {
-        echo $row['res'];
-    }
-    mysqli_close($con);
+$conn = new mysqli($server, $user, $pwd, $db);
+if ($conn->connect_error) {
+    die('Could not connect: ' . $conn->connect_error);
 }
 
-/*
-$con = mysqli_connect('localhost','peter','abc123','my_db');
-if (!$con) {
-    die('Could not connect: ' . mysqli_error($con));
+switch ($q) {
+    case 'frog_count':
+        $sql = "SELECT count(*) as res FROM frogs WHERE dateOfDeath IS NULL";
+        break;
+    case 'male_count':
+        $sql = "SELECT count(*) as res FROM frogs WHERE gender = 'MALE' AND dateOfDeath IS NULL";
+        break;
+    case 'female_count':
+        $sql = "SELECT count(*) as res FROM frogs WHERE gender = 'FEMALE' AND dateOfDeath IS NULL";
+        break;
+    case 'healthy_count':
+        $sql = "SELECT count(*) as res FROM frogs WHERE health = 'HEALTHY' AND dateOfDeath IS NULL";
+        break;
+    case 'pod_count':
+        $sql = "SELECT matingPods as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
+        break;
+    case 'pollution_level':
+        $sql = "SELECT pollutionLevel as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
+        break;
+    case 'pH_level':
+        $sql = "SELECT pHLevel as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
+        break;
+    case 'fish_population':
+        $sql = "SELECT fishPopulation as res FROM pondHealthChecks WHERE pondHealthCheckID = (SELECT max(pondHealthCheckID) FROM pondHealthChecks)";
+        break;
+    default:
+        # code...
+        break;
 }
-
-mysqli_select_db($con,"ajax_demo");
-$sql="SELECT * FROM user WHERE id = '".$q."'";
-$result = mysqli_query($con,$sql);
-
-echo "<table>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-<th>Age</th>
-<th>Hometown</th>
-<th>Job</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['FirstName'] . "</td>";
-    echo "<td>" . $row['LastName'] . "</td>";
-    echo "<td>" . $row['Age'] . "</td>";
-    echo "<td>" . $row['Hometown'] . "</td>";
-    echo "<td>" . $row['Job'] . "</td>";
-    echo "</tr>";
+$result = $conn->query($sql);
+while ($row = $result->fetch_assoc()) {
+    echo $row['res'];
 }
-echo "</table>";
-mysqli_close($con);*/
+$conn->close();
 ?>
 </body>
 </html>
